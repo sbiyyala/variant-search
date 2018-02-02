@@ -22,6 +22,10 @@ If you are comfortable with Python and/or React, please use these technologies f
 
 Our expectation is you will be writing some server code, client code, and applying some basic styling to create a working web application. The application should include unit tests.
 
+Here’s an example of how you might group and display the information:
+
+![variants table example](./example_table.png)
+
 ## Submitting Your Solution
 
 Please provide your solution in this repository. Update this README to include instructions on how to install, test, and run your application. Bonus: Deploy it and include the URL here.
