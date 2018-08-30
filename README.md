@@ -28,7 +28,7 @@ Here’s an example of how you might group and display the information:
 
 ## Submitting Your Solution
 
-Please provide your solution in this repository. Update this README to include instructions on how to install, test, and run your application. Bonus: Deploy it and include the URL here.
+Please clone this repository and upload an archive to Greenhouse, or upload your repository to GitHub and send us a link. Update this README to include instructions on how to install, test, and run your application. Bonus: Deploy it and include the URL here.
 
 As part of the review process, we may comment on or ask questions about specific parts of the code.
 
