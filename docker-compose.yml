@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.0
+    container_name: elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200"]
+      interval: 30s
+      retries: 5
+  django:
+    build: ./services
+    depends_on:
+      - elasticsearch
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    volumes:
+      - ./services:/app/services
+    ports:
+
+      - "8000:8000"
+    environment:
+      - ES_HOST=elasticsearch
+      - WAIT_HOSTS=elasticsearch:9200
+    links:
+      - elasticsearch
+  site:
+    build: ./site
+    command: ["npm", "start"]
+    volumes:
+      - ./site:/app/site
+      - node-modules:/app/site/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - SERVICES_HOST=django
+    depends_on:
+      - django
+
+volumes:
+  node-modules:

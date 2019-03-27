@@ -1,0 +1,8 @@
+
+> fsevents@1.2.4 install /Users/shishir.biyyala/personal/interviews/invitae/variant-search-coding-assignment/site/node_modules/fsevents
+> node install
+
+Failed to execute '/usr/local/Cellar/node/8.3.0/bin/node /usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js configure --fallback-to-build --module=/Users/shishir.biyyala/personal/interviews/invitae/variant-search-coding-assignment/site/node_modules/fsevents/lib/binding/Release/node-v67-darwin-x64/fse.node --module_name=fse --module_path=/Users/shishir.biyyala/personal/interviews/invitae/variant-search-coding-assignment/site/node_modules/fsevents/lib/binding/Release/node-v67-darwin-x64 --napi_version=4 --node_abi_napi=napi' (1)
+added 1 package from 43 contributors and audited 36906 packages in 18.141s
+found 64 vulnerabilities (63 low, 1 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
