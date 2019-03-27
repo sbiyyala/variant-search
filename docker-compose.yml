@@ -7,23 +7,17 @@ services:
     ports:
       - "9200:9200"
       - "9300:9300"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9200"]
-      interval: 30s
-      retries: 5
   django:
     build: ./services
     depends_on:
       - elasticsearch
-    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    command: ["bash", "startup.sh"]
     volumes:
       - ./services:/app/services
     ports:
-
       - "8000:8000"
     environment:
-      - ES_HOST=elasticsearch
-      - WAIT_HOSTS=elasticsearch:9200
+      - ES_HOST=elasticsearch:9200
     links:
       - elasticsearch
   site:
@@ -35,7 +29,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - SERVICES_HOST=django
+      - SERVICES_HOST=django:8000
     depends_on:
       - django
 
