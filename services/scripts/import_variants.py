@@ -1,11 +1,10 @@
-import argparse
 import csv
 import logging
 import os
 import re
 from datetime import datetime
 
-from elasticsearch import Elasticsearch, TransportError
+from elasticsearch import Elasticsearch
 from elasticsearch.helpers import streaming_bulk
 
 
@@ -146,19 +145,5 @@ def run(*args):
     tracer.setLevel(logging.ERROR)
     tracer.addHandler(logging.FileHandler('/tmp/es_trace.log'))
 
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument(
-    #     "-H", "--host",
-    #     action="store",
-    #     default="localhost:9200",
-    #     help="The elasticsearch host you wish to connect to. (Default: localhost:9200)")
-    # parser.add_argument(
-    #     "-p", "--path",
-    #     action="store",
-    #     default='variants.tsv',
-    #     help="Path to variants file")
-    #
-    # parsed_args = parser.parse_args()
-    # print(parsed_args + '......')
-    es = Elasticsearch(os.environ.get('ES_HOST'))
-    load(es, path='scripts/variants.tsv')
+    es_client = Elasticsearch(os.environ.get('ES_HOST'))
+    load(es_client, path='scripts/variants.tsv')
