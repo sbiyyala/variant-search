@@ -14,6 +14,7 @@ const REQUEST_VARIANT_SUGGESTIONS = 'REQUEST_VARIANT_SUGGESTIONS';
 const RECEIVE_VARIANT_SUGGESTIONS = 'RECEIVE_VARIANT_SUGGESTIONS';
 const REQUEST_SEARCH_RESULTS = 'REQUEST_SEARCH_RESULTS';
 const RECEIVE_SEARCH_RESULTS = 'RECEIVE_SEARCH_RESULTS';
+const TOGGLE_SHOW_MAPPINGS = 'TOGGLE_SHOW_MAPPINGS';
 
 const setVariantSearchTerm = (searchText) => ({type: SET_VARIANT_SEARCH_TERM, searchText});
 const requestSuggestions = () => ({type: REQUEST_VARIANT_SUGGESTIONS});
@@ -21,6 +22,7 @@ const receiveSuggestions = suggestions => ({type: RECEIVE_VARIANT_SUGGESTIONS, s
 
 const requestSearchResults = selectedGene => ({type: REQUEST_SEARCH_RESULTS, selectedGene});
 const receiveSearchResults = searchResults => ({type: RECEIVE_SEARCH_RESULTS, searchResults});
+const toggleShowMappings = (nucleotideChange) => ({type: TOGGLE_SHOW_MAPPINGS, nucleotideChange});
 
 const variantSearch = (state = INIT_STATE, action) => {
     switch (action.type) {
@@ -35,7 +37,8 @@ const variantSearch = (state = INIT_STATE, action) => {
         case REQUEST_VARIANT_SUGGESTIONS: {
             return {
                 ...state,
-                isLoading: true
+                isLoading: true,
+                searchResults: []
             }
         }
 
@@ -48,19 +51,34 @@ const variantSearch = (state = INIT_STATE, action) => {
             }
         }
 
-        case REQUEST_SEARCH_RESULTS:
+        case REQUEST_SEARCH_RESULTS: {
             const {selectedGene} = action;
             return {
                 ...state,
                 selectedGene
             };
+        }
 
-        case RECEIVE_SEARCH_RESULTS:
+        case RECEIVE_SEARCH_RESULTS: {
             const {searchResults} = action;
             return {
                 ...state,
-                searchResults
+                searchResults: searchResults.map(result => ({...result, showMappings: false}))
             };
+        }
+
+        case TOGGLE_SHOW_MAPPINGS: {
+            const {nucleotideChange} = action;
+            const {searchResults} = state;
+            const updated = searchResults.map(result => {
+                if (result.nucleotideChange === nucleotideChange) {
+                    return {...result, showMappings: !result.showMappings};
+                } else {
+                    return result;
+                }
+            });
+            return {...state, searchResults: updated};
+        }
 
         default:
             return state;
@@ -96,5 +114,6 @@ export {
     requestSuggestions,
     receiveSuggestions,
     requestSearchResults,
-    receiveSearchResults
+    receiveSearchResults,
+    toggleShowMappings
 };
