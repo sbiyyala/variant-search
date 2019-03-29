@@ -1,55 +1,74 @@
-import LinkRenderer from "./LinkRenderer";
+import LinkRenderer from "./renderers/LinkRenderer";
+import NucleotideChangeRenderer from "./renderers/NucleotideChangeRenderer";
 
 const columns = [
     {
         headerName: "GENE",
-        field: "gene"
+        field: "gene",
+        minWidth: 30
     },
     {
         headerName: "NUCLEOTIDE CHANGE",
-        field: "nucleotideChange"
+        field: "nucleotideChange",
+        cellRenderer: "nucleotideChangeRenderer",
+        headerTooltip: "NUCLEOTIDE CHANGE"
     },
     {
         headerName: "PROTEIN CHANGE",
-        field: "proteinChange"
+        field: "proteinChange",
+        headerTooltip: "PROTEIN CHANGE"
     },
     {
         headerName: "ALIAS",
-        field: "alias"
+        field: "alias",
+        headerTooltip: "ALIAS"
     },
     {
         headerName: "REGION",
+        headerTooltip: "REGION",
         field: "region"
     },
     {
         headerName: "REPORTED CLASSIFICATION",
-        field: "reportedClassification"
+        field: "reportedClassification",
+        headerTooltip: "REPORTED CLASSIFICATION"
     },
     {
         headerName: "LAST EVALUATED",
-        field: "lastEvaluated"
+        field: "lastEvaluated",
+        headerTooltip: "LAST EVALUATED"
     },
     {
         headerName: "LAST UPDATED",
-        field: "lastUpdated"
+        field: "lastUpdated",
+        headerTooltip: "LAST UPDATED"
     },
     {
         headerName: "MORE INFO",
         field: "source",
-        cellRenderer: "linkRenderer"
+        cellRenderer: "linkRenderer",
+        headerTooltip: "MORE INFO"
     }
 ];
 
 const frameworkComponents = {
-    linkRenderer: LinkRenderer
+    linkRenderer: LinkRenderer,
+    nucleotideChangeRenderer: NucleotideChangeRenderer
 };
 
 const gridOptions = {
     frameworkComponents,
     suppressHorizontalScroll: true,
-    enableSorting: true,
     domLayout: "autoHeight",
-    suppressDragLeaveHidesColumns: true
+    suppressDragLeaveHidesColumns: true,
+    suppressRowTransform: true,
+    defaultColDef: {
+        resizable: true,
+        sortable: true
+    },
+    getRowHeight: ({data: {otherMappings, showMappings}}) => {
+        return (showMappings ? otherMappings.length : 1) * 30;
+    }
 };
 
 function factory() {

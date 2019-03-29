@@ -56,6 +56,7 @@ def create_variants_index(client, index):
             'analysis': {
                 'analyzer': {
                     'autocomplete': {
+                        'type': 'custom',
                         'tokenizer': 'autocomplete',
                         'filter': [
                             'lowercase'
@@ -69,10 +70,7 @@ def create_variants_index(client, index):
                     'autocomplete': {
                         'type': 'edge_ngram',
                         'min_gram': 1,
-                        'max_gram': 20,
-                        'token_chars': [
-                            "letter"
-                        ]
+                        'max_gram': 20
                     }
                 }
             }
@@ -83,7 +81,6 @@ def create_variants_index(client, index):
                     'gene': {
                         'type': 'text',
                         'analyzer': 'autocomplete',
-                        'search_analyzer': 'autocomplete_search',
                         'fields': {
                             'keyword': {
                                 'type': 'keyword'
