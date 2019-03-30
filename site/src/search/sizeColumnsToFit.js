@@ -5,7 +5,7 @@ export default {
                           resizeOnceOnRowDataUpdated,
                           autoSizeColumnsOnReady,
                           autoSizeColumnsOnRowDataUpdated
-                      }) {
+                      } = {}) {
         let api;
         let columnApi;
         let resizingInProgress = false;
@@ -66,7 +66,7 @@ export default {
             resizeGrid({autoSizeColumns: autoSizeColumnsOnRowDataUpdated});
         }
 
-        function onColumnsResized({finished, source, column}) {
+        function onColumnResized({finished, source, column}) {
             if (!finished && source === 'uiColumnDragged' && column) {
                 resizingColumn = column;
             }
@@ -81,52 +81,14 @@ export default {
             }
         }
 
-        function applyColumnWidthWeights(weights) {
-            if (columnApi) {
-                const colIdToWeight = (weights || []).reduce((acc, item) => {
-                    acc[item.name] = item.width;
-                    return acc;
-                }, {});
-
-                Object.keys(colIdToWeight).forEach(colId => {
-                    const weight = colIdToWeight[colId];
-                    const column = columnApi.getAllGridColumns().find(c => c.getColId() === colId);
-                    if (column) {
-                        const actualWidth = column && column.getActualWidth();
-                        if (weight && (weight !== actualWidth)) {
-                            columnApi.setColumnWidth(colId, weight, true);
-                        }
-                    }
-                });
-            }
-        }
-
-        function sizeDefFromActualColumn(column) {
-            if (columnApi) {
-                const actualColumn = columnApi.getAllGridColumns().find(c => c.getColId() === column.colId);
-                return actualColumn ? {...column, ...{width: actualColumn.getActualWidth()}} : column;
-            }
-
-            return column;
-        }
-
         const resizeOnRowDataUpdated = resizeOnceOnRowDataUpdated ? once(onRowDataUpdated) : onRowDataUpdated;
-
-        const autoSizeGridProps = {
-            onGridReady,
-            onGridSizeChanged,
-            onRowDataUpdated: resizeOnRowDataUpdated
-        };
 
         return {
             onGridReady,
             onGridSizeChanged,
             onRowDataUpdated: resizeOnRowDataUpdated,
             onGridColumnsChanged,
-            sizeDefFromActualColumn,
-            applyColumnWidthWeights,
-            autoSizeGridProps,
-            onColumnsResized
+            onColumnResized
         }
     }
 }

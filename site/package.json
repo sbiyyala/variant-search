@@ -19,9 +19,11 @@
     "react-select": "^2.1.0",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
+    "redux-mock-store": "^1.5.1",
     "redux-observable": "^0.18.0",
     "rxjs": "~5.5.7",
-    "whatwg-fetch": "^2.0.3"
+    "whatwg-fetch": "^2.0.3",
+    "reactstrap": "6.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,8 +41,18 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@babel/runtime": "7.1.2",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "globby": "^8.0.1",
     "remote-redux-devtools": "^0.5.16",
     "enzyme": "3.3.0",
-    "enzyme-adapter-react-16": "^1.6.0"
+    "enzyme-adapter-react-16": "^1.6.0",
+    "react-test-renderer": "16.4.0",
+    "sinon": "^7.2.2"
   }
 }

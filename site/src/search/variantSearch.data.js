@@ -1,11 +1,13 @@
 import LinkRenderer from "./renderers/LinkRenderer";
 import NucleotideChangeRenderer from "./renderers/NucleotideChangeRenderer";
+import GeneDataRenderer from "./renderers/GeneDataRenderer";
 
 const columns = [
     {
         headerName: "GENE",
         field: "gene",
-        minWidth: 30
+        minWidth: 30,
+        cellRenderer: "geneDataRenderer"
     },
     {
         headerName: "NUCLEOTIDE CHANGE",
@@ -53,7 +55,8 @@ const columns = [
 
 const frameworkComponents = {
     linkRenderer: LinkRenderer,
-    nucleotideChangeRenderer: NucleotideChangeRenderer
+    nucleotideChangeRenderer: NucleotideChangeRenderer,
+    geneDataRenderer: GeneDataRenderer
 };
 
 const gridOptions = {
@@ -66,16 +69,14 @@ const gridOptions = {
         resizable: true,
         sortable: true
     },
-    getRowHeight: ({data: {otherMappings, showMappings}}) => {
-        return (showMappings ? otherMappings.length : 1) * 30;
-    }
+    getRowHeight: ({data: {otherMappings, showMappings}}) => (showMappings ? otherMappings.length : 1) * 26
 };
 
-function factory() {
+function searchResultsFactory() {
     return {
         columns,
         gridOptions
     }
 }
 
-export {factory};
+export {searchResultsFactory};

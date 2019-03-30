@@ -13,11 +13,6 @@ code {
     monospace;
 }
 
-.ag-cell {
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
-}
-
 label {
     font-weight: normal !important;
 }
@@ -39,4 +34,16 @@ label {
     display: inline-block;
     height: 100%;
     width: 100%;
+}
+
+.force-href-styling {
+    cursor: pointer;
+}
+
+.link-primary {
+    color: blue;
+}
+
+.link-primary:hover {
+    text-decoration: underline;
 }
