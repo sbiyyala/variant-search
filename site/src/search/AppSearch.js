@@ -8,6 +8,7 @@ function formatSuggestions(response = []) {
     return response.map(({gene: label}, value) => ({label, value}));
 }
 
+// https://material-ui.com/demos/autocomplete/
 class AppSearch extends React.PureComponent {
 
     constructor(props) {

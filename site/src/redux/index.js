@@ -1,10 +1,11 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {variantSearch, rootEpic} from "./variantSearch";
+import {variantSearch, variantSearchRootEpic} from "./variantSearch";
 import {combineEpics, createEpicMiddleware} from "redux-observable";
 import {composeWithDevTools} from "remote-redux-devtools";
+import {notifications} from "./notifications";
 
-const reducers = {variantSearch};
-const epics = [rootEpic];
+const reducers = {variantSearch, notifications};
+const epics = [variantSearchRootEpic];
 
 const epicMiddleware = createEpicMiddleware(combineEpics(...epics));
 const rootReducer = combineReducers(reducers);

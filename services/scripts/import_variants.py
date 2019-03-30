@@ -26,7 +26,7 @@ def gen_variants(path):
                 'proteinChange': row.get('Protein Change'),
                 'otherMappings': [x.strip() for x in row.get('Other Mappings').split(',')],
                 'alias': row.get('Alias'),
-                'transcripts': row.get('Transcripts'),
+                'transcripts': [x.strip() for x in row.get('Transcripts').split(',')],
                 'region': row.get('Region'),
                 'reportedClassification': row.get('Reported Classification'),
                 'inferredClassification': row.get('Inferred Classification'),

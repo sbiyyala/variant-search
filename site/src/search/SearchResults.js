@@ -1,15 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {factory} from "./variantSearch.data";
+import {searchResultsFactory} from "./variantSearch.data";
 import {AgGridReact} from "ag-grid-react";
 import sizeColumnsToFit from "./sizeColumnsToFit";
+import GeneDataDialog from "./GeneDataDialog";
 
 class SearchResults extends React.PureComponent {
 
     constructor(props) {
         super(props);
-        this._grid = factory();
+        this._grid = searchResultsFactory();
         this._sizeColumnsToFit = sizeColumnsToFit.create({
             resizeOnceOnRowDataUpdated: true,
             autoSizeColumnsOnReady: true
@@ -18,7 +19,6 @@ class SearchResults extends React.PureComponent {
     }
 
     _onGridReady(params) {
-        this.gridApi = params.api;
         this._sizeColumnsToFit.onGridReady(...arguments);
     };
 
@@ -37,20 +37,22 @@ class SearchResults extends React.PureComponent {
                              rowData={rows}
                              onGridReady={this._onGridReady}
                              onGridSizeChanged={this._sizeColumnsToFit.onGridSizeChanged}
-                             onColumnResized={this._sizeColumnsToFit.onColumnsResized}
+                             onColumnResized={this._sizeColumnsToFit.onColumnResized}
                              onGridColumnsChanged={this._sizeColumnsToFit.onGridColumnsChanged}
                 />
+                <GeneDataDialog/>
             </div>
         );
     }
 }
 
 SearchResults.propTypes = {
-    rows: PropTypes.array.isRequired
+    rows: PropTypes.array
 };
 
 const mapStateToProps = ({variantSearch: {searchResults: rows}}) => ({
     rows
 });
 
+export {SearchResults};
 export default connect(mapStateToProps, null)(SearchResults);
