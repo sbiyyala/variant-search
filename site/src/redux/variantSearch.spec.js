@@ -2,7 +2,7 @@
 import 'rxjs';
 import {createEpicMiddleware} from "redux-observable";
 import configureMockStore from "redux-mock-store";
-import {requestSuggestions, variantSearchRootEpic} from "./variantSearch";
+import {receiveSuggestions, requestSuggestions, variantSearchRootEpic} from "./variantSearch";
 import * as services from "./services";
 import {displayUnhandledError} from "./notifications";
 
@@ -15,7 +15,7 @@ describe('Given variant search root epic', () => {
         mockStore = configureMockStore([middleware]);
     });
 
-    describe('Bleh', () => {
+    describe('When variant suggestions are requested', () => {
         beforeEach(() => {
             store = mockStore({
                 variantSearch: {
@@ -37,6 +37,19 @@ describe('Given variant search root epic', () => {
 
         it('Then calls the suggestions service', () => {
             expect(services.fetchVariantSuggestions).toHaveBeenCalledWith('AA');
+        });
+
+        describe(('When request succeeds'), () => {
+            beforeEach(() => {
+                resolveRequest([{'gene': 'AA'}, {'gene': 'AB'}]);
+            });
+
+            it('Then receive suggestions action is emitted', () => {
+                expect(store.getActions()).toEqual([
+                    requestSuggestions(),
+                    receiveSuggestions([{'gene': 'AA'}, {'gene': 'AB'}])
+                ]);
+            });
         });
 
         describe(('When request fails'), () => {
