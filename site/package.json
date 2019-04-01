@@ -7,7 +7,6 @@
     "ag-grid-react": "20.0.0",
     "bootstrap": "^4.3.1",
     "http-proxy-middleware": "^0.19.1",
-    "lodash.once": "^4.1.1",
     "material-design-icons": "3.0.1",
     "material-ui": "^0.20.2",
     "prop-types": "15.6.2",
@@ -23,7 +22,8 @@
     "redux-observable": "^0.18.0",
     "rxjs": "~5.5.7",
     "whatwg-fetch": "^2.0.3",
-    "reactstrap": "6.4.0"
+    "reactstrap": "6.4.0",
+    "lodash": "4.17.11"
   },
   "scripts": {
     "start": "react-scripts start",
