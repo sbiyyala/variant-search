@@ -25,7 +25,7 @@ services:
     command: ["npm", "start"]
     volumes:
       - ./site:/app/site
-      - node-modules:/app/site/node_modules
+      - /app/site/node_modules
     ports:
       - "3000:3000"
     environment:
