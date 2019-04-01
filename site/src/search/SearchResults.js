@@ -31,7 +31,7 @@ class SearchResults extends React.PureComponent {
         const {columns, gridOptions} = this._grid;
 
         return (
-            <div className="pl-3 pt-3 ag-theme-balham">
+            <div className="pl-3 pt-4 ag-theme-balham">
                 <AgGridReact {...gridOptions}
                              columnDefs={columns}
                              rowData={rows}
