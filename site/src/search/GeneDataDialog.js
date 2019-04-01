@@ -27,7 +27,7 @@ const columnMapping = {
     alt: 'Alternative',
     accession: 'Accession',
     reportedRef: 'Reported Reference',
-    reportedAlt: 'Repored Alternative'
+    reportedAlt: 'Reported Alternative'
 };
 
 class GeneDataDialog extends Component {

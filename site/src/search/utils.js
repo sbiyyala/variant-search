@@ -8,9 +8,9 @@ function chunkString(input, limit) {
             _ret = new Array(_size);
         let _offset;
 
-        for (var _i = 0; _i < _size; _i++) {
-            _offset = _i * limit;
-            _ret[_i] = input.substring(_offset, _offset + limit);
+        for (let idx = 0; idx < _size; idx++) {
+            _offset = idx * limit;
+            _ret[idx] = input.substring(_offset, _offset + limit);
         }
 
         return _ret;

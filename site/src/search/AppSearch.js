@@ -8,7 +8,6 @@ function formatSuggestions(response = []) {
     return response.map(({gene: label}, value) => ({label, value}));
 }
 
-// https://material-ui.com/demos/autocomplete/
 class AppSearch extends React.PureComponent {
 
     constructor(props) {
@@ -41,11 +40,10 @@ class AppSearch extends React.PureComponent {
     };
 
     _onFocus = () => {
-        const {selectedGene, setVariantSearchTerm, requestSuggestions} = this.props;
-        setVariantSearchTerm(selectedGene);
-        if (selectedGene) {
-            requestSuggestions();
-        }
+        this._selectRef.current.select.clearValue();
+        const {setVariantSearchTerm} = this.props;
+        setVariantSearchTerm("");
+
     };
 
     render() {
@@ -79,7 +77,6 @@ class AppSearch extends React.PureComponent {
 AppSearch.propTypes = {
     query: PropTypes.string,
     searchText: PropTypes.string.isRequired,
-    selectedGene: PropTypes.string.isRequired,
     isLoading: PropTypes.bool.isRequired,
     suggestions: PropTypes.array.isRequired,
     setVariantSearchTerm: PropTypes.func.isRequired,
@@ -87,11 +84,10 @@ AppSearch.propTypes = {
     requestSearchResults: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({variantSearch: {searchText, selectedGene, isLoading, suggestions}}) => ({
+const mapStateToProps = ({variantSearch: {searchText, isLoading, suggestions}}) => ({
     searchText,
     isLoading,
-    suggestions,
-    selectedGene
+    suggestions
 });
 
 const mapDispatchToProps = {setVariantSearchTerm, requestSuggestions, requestSearchResults};
