@@ -23,7 +23,8 @@ The separation-of-concerns principle is applied on the UI again, separating rend
 4. `$ docker-compose up` will stand-up the application
 5. `$ docker-compose down` will tear-down the application
 6. `ES` indices are created before django server starts up; this dependency is handled by startup script [`startup.sh`]
-7. `ES` Import Job (`import_variants.py`) is handled as a `django` `runscript` 
+7. `ES` Import Job (`import_variants.py`) is handled as a `django` `runscript`
+8. When the app is up and running, access it at (http://localhost:3000)
 
 ### Unit tests
 1. `import_variants.py` is `unit-tested`, in `services/test.py` 
