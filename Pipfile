@@ -9,7 +9,9 @@ django-cors-headers = "*"
 elasticsearch = "*"
 python-dateutil = "*"
 django-extensions = "*"
-argparse = "*"
+httpretty = "*"
+elasticmock = "*"
+django-override-settings = "*"
 
 [dev-packages]
 

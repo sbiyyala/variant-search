@@ -17,6 +17,9 @@ def to_date(elem):
 
 
 def gen_variants(path):
+    """
+    :param path: Path to tsv file
+    """
     with open(path) as tsv_file:
         reader = csv.DictReader(tsv_file, dialect='excel-tab')
         for row in reader:
@@ -52,7 +55,9 @@ def create_variants_index(client, index):
         'settings': {
             'number_of_shards': 1,
             'number_of_replicas': 0,
-
+            "mapper": {
+                "dynamic": "false"
+            },
             'analysis': {
                 'analyzer': {
                     'autocomplete': {

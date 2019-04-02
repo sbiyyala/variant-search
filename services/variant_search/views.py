@@ -1,11 +1,11 @@
 import os
 
+import elasticsearch
 from django.http import JsonResponse, HttpResponseBadRequest
-from elasticsearch import Elasticsearch
 
 MAX_SIZE = 10000
 
-es_client = Elasticsearch(os.environ.get('ES_HOST'))
+es_client = elasticsearch.Elasticsearch(os.environ.get('ES_HOST'))
 
 
 def suggest(request):
