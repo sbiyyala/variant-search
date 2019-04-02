@@ -21,13 +21,18 @@ services:
     links:
       - elasticsearch
   site:
-    build: ./site
-    command: ["npm", "start"]
+    image: node:latest
+    command: ["bash", "entrypoint.sh"]
+    working_dir: /site
     volumes:
       - ./site:/app/site
-      - /app/site/node_modules
+  nginx:
+    image: nginx:latest
     ports:
-      - "3000:3000"
+      - 80:8080
+    volumes:
+      - ./nginx/nginx-proxy.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./site/build:/var/www/site # maps site build inside nginx
     environment:
       - SERVICES_HOST=django:8000
     depends_on:
