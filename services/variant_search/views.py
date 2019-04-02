@@ -34,7 +34,7 @@ def suggest(request):
                                   _source_include=['gene'])
 
         variants = map(lambda x: x['_source'], result['hits']['hits'])
-        deduped = list({variant['gene']:variant for variant in variants}.values())
+        deduped = list({variant['gene']: variant for variant in variants}.values())
         return JsonResponse(deduped, safe=False)
 
 
@@ -62,5 +62,6 @@ def search(request):
                                   },
                                   size=MAX_SIZE)
 
-        variants = list(map(lambda x: x['_source'], result['hits']['hits']))
+        results = map(lambda x: x['_source'], result['hits']['hits'])
+        variants = list({result['nucleotideChange']: result for result in results}.values())
         return JsonResponse(variants, safe=False)
