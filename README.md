@@ -32,6 +32,7 @@ Please run docker-compose, before running the services' tests `cd services &&  p
 3. `cd site && CI=true npm run test` will run the UI tests. 
     1. UI tests use the `enzyme` library
     2. The tests are divided into `Component` vs `reducer` vs `epic` tests
+4. There is minimal custom-styling, `bootstrap-styling` is heavily used
     
 ### Future-work
 Django-views do not have 'true' unit-tests. `ES` interaction should be mocked out, and query format can be asserted against. 
