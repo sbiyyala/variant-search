@@ -47,6 +47,7 @@ Please run docker-compose, before running the services' tests `cd services &&  p
 1. Django-views do not have 'true' unit-tests. `ES` interaction should be mocked out, and query format can be asserted against
 2. Docker config for different envs - dev/prod
 3. `Nginx` as the server is used for production. The code is in a separate git branch - `prod-nginx-deployment`. Integrate that into master seamlessly,tying in with #2
+4. Give production a FQDN :)
 
 ### End of Solution
 
