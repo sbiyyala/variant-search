@@ -25,6 +25,8 @@ ES and Django services' layers are in `variant-search/services`
 React UI is in `variant-search/site`
 
 ### Deployment
+The only prerequisites are `docker 3` and `docker-compose`
+
 1. The App is fully dockerized, uses docker 
 2. `docker-compose.yml` has 3 services, one per layer
 3. `$ docker-compose build` will build the images
