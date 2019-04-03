@@ -2,9 +2,67 @@
 import 'rxjs';
 import {createEpicMiddleware} from "redux-observable";
 import configureMockStore from "redux-mock-store";
-import {receiveSuggestions, requestSuggestions, variantSearchRootEpic} from "./variantSearch";
+import {
+    receiveSuggestions,
+    requestSuggestions,
+    setVariantSearchTerm,
+    variantSearch,
+    variantSearchRootEpic
+} from "./variantSearch";
 import * as services from "./services";
 import {displayUnhandledError} from "./notifications";
+
+describe('Given variant search reducer', () => {
+    let actual, given;
+
+    const initialState = {
+        isLoading: false,
+        searchResults: [],
+        searchText: "",
+        selectedGene: "",
+        suggestions: []
+    };
+
+    describe('When state is initialized', () => {
+        beforeEach(() => {
+            given = actual;
+            actual = variantSearch(undefined, {type: 'test-type'});
+        });
+
+        it('Then returns initial state', () => {
+            expect(actual).toEqual(initialState);
+        });
+
+        describe('When setVariantSearchTerm action is emitted', () => {
+            beforeEach(() => {
+                given = actual;
+                actual = variantSearch(given, setVariantSearchTerm('search'));
+            });
+
+            it('Then sets search term in state', () => {
+                expect(actual).toEqual({
+                    ...given,
+                    searchText: 'search'
+                });
+            });
+
+            describe('When requestSuggestions action is emitted', () => {
+                beforeEach(() => {
+                    given = actual;
+                    actual = variantSearch(given, requestSuggestions());
+                });
+
+                it('Then isLoading is set to true and searchResults are reset', () => {
+                    expect(actual).toEqual({
+                        ...given,
+                        isLoading: true,
+                        searchResults: []
+                    });
+                });
+            });
+        });
+    });
+});
 
 describe('Given variant search root epic', () => {
     let mockStore, store, resolveRequest, rejectRequest;
