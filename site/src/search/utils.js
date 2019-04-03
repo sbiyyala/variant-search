@@ -1,4 +1,4 @@
-function chunkString(input, limit) {
+function chunkString(input, limit = 10) {
     if (!input) {
         return [];
     } else if (Array.isArray(input)) {
