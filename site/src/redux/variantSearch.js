@@ -92,7 +92,7 @@ const requestVariantSuggestionsEpic = (action$, store) =>
             const {variantSearch: {searchText: term}} = store.getState();
             return fetchVariantSuggestions(term)
                 .then(receiveSuggestions)
-                .catch(error => displayUnhandledError(error));
+                .catch(displayUnhandledError);
         })
         .flatMap(actions => actions);
 
@@ -101,7 +101,8 @@ const requestVariantSearchResultsEpic = (action$, store) =>
         .map(() => {
             const {variantSearch: {selectedGene}} = store.getState();
             return fetchVariantSearchResults(selectedGene)
-                .then(receiveSearchResults);
+                .then(receiveSearchResults)
+                .catch(displayUnhandledError);
         })
         .flatMap(actions => actions);
 
