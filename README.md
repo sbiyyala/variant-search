@@ -3,7 +3,7 @@
 ### Features
 1. Expected features (genomic variant search `suggestions`, `results`, `nucleotideChange-mappings grouping` etc.)
 2. `Gene` is clickable, which opens up a dialog with complete information for the genome variant
-3. The grid columns can be rearranged 
+3. The grid columns can be rearranged and sorted 
 4. The grid tries to best align the columns, but resizing is also allowed as needed. Clicking on `header separators` provide max width for the column
 5. Grid resizes with browser window 
 6. (http://35.233.185.142/) is the app deployment on google cloud
