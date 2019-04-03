@@ -9,16 +9,15 @@ const DISPLAY_UNHANDLED_ERROR = 'DISPLAY_UNHANDLED_ERROR';
 export const displayUnhandledError = error => ({type: DISPLAY_UNHANDLED_ERROR, error});
 
 export const notifications = (state = INIT_STATE, action) => {
-    switch (action.type) {
-        case DISPLAY_UNHANDLED_ERROR:
-            return {
-                ...state,
-                unhandled: {
-                    error: action.error
-                }
-            };
-        default:
-            return state;
+    if (action.type === DISPLAY_UNHANDLED_ERROR) {
+        return {
+            ...state,
+            unhandled: {
+                error: action.error
+            }
+        };
+    } else {
+        return state;
     }
 };
 
