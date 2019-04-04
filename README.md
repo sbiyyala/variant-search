@@ -19,7 +19,7 @@ The separation-of-concerns principle is applied on the UI again, separating rend
     1. `Ag-grid` is heavily used as the `grid` solution 
     2. `Search` results show matching genes per suggestion; nucleotideChange is grouped with its `otherMappings`, `source` linking etc
     3. In addition to #2, every matching result has the `gene` clickable, which would open a dialog with `all` information about the attributes. This again is a similarly-themed `Ag-grid` 
-    4. There is minimal custom-styling, `bootstrap-styling` is heavily used
+    4. There is minimal custom-styling, `bootstrap and flex styling` is heavily used
 
 ES and Django services' layers are in `variant-search/services`
 React UI is in `variant-search/site`
