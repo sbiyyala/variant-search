@@ -1,13 +1,12 @@
-# Variant Search Coding Assignment : http://35.230.24.118/
-## Solution : https://github.com/sbiyyala/variant-search
-### Features
+# Variant Search: http://35.230.24.118/
+## Features
 1. Expected features (genomic variant search `suggestions`, `results`, `nucleotideChange-mappings grouping` etc.)
 2. `Gene` is clickable, which opens up a dialog with complete information for the genome variant
 3. The grid columns can be rearranged and sorted 
 4. The grid tries to best align the columns, but resizing is also allowed as needed. Clicking on `header separators` provide max width for the column
 5. Grid resizes with browser window 
 6. (http://35.230.24.118/) is the app deployment on google cloud
-### Architecture
+## Architecture
 There are 3 layers to the architecture, each handling a distinct/separate concern and communicate via `http` [REST-style]
 1. `Elasticsearch[ES]`/Indexing: `Elasticsearch` is used for indexing variants, to facilitate fast runtime searches.
     1. `ES` is an ideal candidate for the auto-suggest and subsequent gene search
@@ -50,43 +49,3 @@ Please run docker-compose, before running the services' tests `cd services &&  p
 2. Docker config for different envs - dev/prod
 3. `Nginx` as the server is used for production. The code is in a separate git branch - `prod-nginx-deployment`. Integrate that into master seamlessly,tying in with #2
 4. Give production a FQDN :)
-
-### End of Solution
-
-## Assignment
-
-Create a web application that allows a user to search for genomic variants by gene name and display the results in a tabular view.
-
-## Features
-
-1. Allow the user to enter a gene name to search for variants in that gene. Display the results in a table that shows various attributes associated with each genomic variant.
-
-2. Provide an auto-suggest feature for entering the gene name.
-
-3. Provide two RESTful endpoints supporting the functionality listed in steps 1 and 2.
-
-## Datasource
-
-A zipped TSV file of variants is available in /data/variants.tsv.zip. Each row in the TSV file represents a genomic variant and contains a Gene column with the gene name. A variant will belong to one and only one gene, but multiple variants may belong to the same gene.
-
-## Implementation
-
-If you are comfortable with Python and/or React, please use these technologies for your app. You may use any additional frameworks, languages, databases, libraries, etc. that you find appropriate.
-
-Our expectation is you will be writing some server code, client code, and applying some basic styling to create a working web application. The application should include unit tests.
-
-Here’s an example of how you might group and display the information:
-
-![variants table example](./example_table.png)
-
-## Submitting Your Solution
-
-Please clone this repository and upload an archive to Greenhouse, or upload your repository to GitHub and send us a link. Update this README to include instructions on how to install, test, and run your application. Bonus: Deploy it and include the URL here.
-
-As part of the review process, we may comment on or ask questions about specific parts of the code.
-
-Please return your solution within 1 week. This is not an expectation of the time required to complete the assignment. Rather, it’s meant to provide buffer for busy schedules.
-
-## Questions
-
-Please ask if any part of the assignment is unclear. Communicate with us as you would with your project team at work.
