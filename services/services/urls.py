@@ -21,7 +21,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('api/', include(router.urls))
     path('api/variant/', include('variant_search.urls'))
 
 ]
