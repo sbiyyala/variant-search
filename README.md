@@ -1,4 +1,4 @@
-# Variant Search Coding Assignment : http://35.230.24.118/
+# Variant Search Coding Assignment : http://34.83.232.32/
 ## Solution : https://github.com/sbiyyala/variant-search
 ### Features
 1. Expected features (genomic variant search `suggestions`, `results`, `nucleotideChange-mappings grouping` etc.)
@@ -6,7 +6,7 @@
 3. The grid columns can be rearranged and sorted 
 4. The grid tries to best align the columns, but resizing is also allowed as needed. Clicking on `header separators` provide max width for the column
 5. Grid resizes with browser window 
-6. (http://35.230.24.118/) is the app deployment on google cloud
+6. (http://34.83.232.32/) is the app deployment on google cloud
 ### Architecture
 There are 3 layers to the architecture, each handling a distinct/separate concern and communicate via `http` [REST-style]
 1. `Elasticsearch[ES]`/Indexing: `Elasticsearch` is used for indexing variants, to facilitate fast runtime searches.
