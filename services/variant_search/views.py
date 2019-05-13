@@ -64,6 +64,5 @@ def search(request):
 
         results = map(lambda x: x['_source'], result['hits']['hits'])
         seen = set()
-        seen_add = seen.add
-        variants = [x for x in list(results) if not (x['nucleotideChange'] in seen or seen_add(x['nucleotideChange']))]
+        variants = [x for x in list(results) if not (x['nucleotideChange'] in seen or seen.add(x['nucleotideChange']))]
         return JsonResponse(variants, safe=False)
